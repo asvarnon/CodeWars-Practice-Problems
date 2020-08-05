@@ -70,18 +70,25 @@ function createItem(name, price, type, quantity, shoppingCart) {
     shoppingCart.push(newItem);
     return shoppingCart;
 }
-createItem("ToothBrush", 3.00, "hygeine", 1, shoppingCart);
+createItem("Tooth Brush", 3.00, "hygeine", 1, shoppingCart);
+createItem("Harry Potter", 15.00, "book", 2, shoppingCart);
 //--------
 function printReceipt(shoppingCart) {
     // let exemptItemTypes = ["book", "food", "medical"];
     shoppingCart.forEach(function (item) {
-        console.log(item.quantity + "" + item.name + ": $" + ((item.price).toFixed(2) * item.quantity));
+        var itemTax = 0;
+        var itemPrice = 0;
         if(item.type === "book" || item.type ===  "food"|| item.type ===  "medical"){
-            return item.quantity + " " + item.name + ": $" + importTax(item.price).toFixed(2) + basicTax(0);
+            itemTax += importTax(item.price).toFixed(2);
+            itemPrice += (item.quantity * item.price).toFixed(2);
+            return item.quantity + " " + item.name + ": $" + (item.quantity * item.price).toFixed(2);
         }
-        console.log("Sales Taxes: $" + importTax(item.price).toFixed(2) + basicTax(item.price).toFixed(2));
-        console.log("Total price is: $" + (item.price) + importTax(item.price).toFixed(2) + basicTax(item.price).toFixed(2));
-    })
+        itemPrice += (item.quantity * item.price).toFixed(2);
+        itemTax += (importTax(item.price).toFixed(2) + basicTax(item.price).toFixed(2));
+        return item.quantity + " " + item.name + ": $" + ((item.price).toFixed(2) * item.quantity)
+    });
+    console.log("Sales Taxes: $" + itemTax);
+    console.log("Total price is: $" + (itemTax + itemPrice));
 }
 
 // createItem("x", "y",...shoppingCart)
