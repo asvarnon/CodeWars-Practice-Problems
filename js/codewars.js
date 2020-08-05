@@ -47,7 +47,19 @@ function findOutlier(arr){
 }
 
 
+//--------------------------------------------------------------------------------
+//sales tax exercise
 
+let shoppingCart = [];
+
+function totalTax(input) {
+    return (input + (input * .15));
+}
+
+function exemptOfTax(input) {
+    // exempt for food, books, medical. 10% tax
+    return (input + (input * .05));
+}
 
 
 
