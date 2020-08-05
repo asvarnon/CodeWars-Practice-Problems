@@ -75,24 +75,25 @@ createItem("Harry Potter", 15.00, "book", 2, shoppingCart);
 //--------
 function printReceipt(shoppingCart) {
     // let exemptItemTypes = ["book", "food", "medical"];
+    var itemTax = 0;
+    var itemPrice = 0;
     shoppingCart.forEach(function (item) {
-        var itemTax = 0;
-        var itemPrice = 0;
+        // var itemTax = 0;
+        // var itemPrice = 0;
         if(item.type === "book" || item.type ===  "food"|| item.type ===  "medical"){
-            itemTax += importTax(item.price).toFixed(2);
-            itemPrice += (item.quantity * item.price).toFixed(2);
+            itemTax += parseFloat(importTax(item.price).toFixed(2));
+            itemPrice += parseFloat((item.quantity * item.price).toFixed(2));
             return item.quantity + " " + item.name + ": $" + (item.quantity * item.price).toFixed(2);
         }
-        itemPrice += (item.quantity * item.price).toFixed(2);
-        itemTax += (importTax(item.price).toFixed(2) + basicTax(item.price).toFixed(2));
+        itemPrice += parseFloat((item.quantity * item.price).toFixed(2));
+        itemTax += parseFloat((importTax(item.price).toFixed(2) + basicTax(item.price).toFixed(2)));
         return item.quantity + " " + item.name + ": $" + ((item.price).toFixed(2) * item.quantity)
     });
     console.log("Sales Taxes: $" + itemTax);
     console.log("Total price is: $" + (itemTax + itemPrice));
 }
 
-// createItem("x", "y",...shoppingCart)
-// printReceipt(shoppingCart);
+
 
 
 
