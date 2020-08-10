@@ -1,4 +1,4 @@
-//(function (){
+(function (){
 "use strict";
 
 
@@ -89,8 +89,12 @@ function printReceipt(shoppingCart) {
         itemTax += parseFloat((importTax(item.price).toFixed(2) + basicTax(item.price).toFixed(2)));
         return item.quantity + " " + item.name + ": $" + ((item.price).toFixed(2) * item.quantity)
     });
+    // so far it is working correctly.
+    console.log("Subtotal: $" + itemPrice);
     console.log("Sales Taxes: $" + itemTax);
     console.log("Total price is: $" + (itemTax + itemPrice));
+
+    //Works.
 }
 
 
@@ -115,4 +119,4 @@ function printReceipt(shoppingCart) {
 
 
 
-//})();
+})();
